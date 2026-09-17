@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Mapa colaborativo de notas e interesse por cenário do ENARE Pernambuco — Psicologia.">
+  <title>ENARE Pernambuco — Psicologia</title>
+  <style>
+    :root { --bg:#f5f7fb; --surface:#ffffff; --ink:#14213d; --muted:#586174; --primary:#176b5a; --primary-dark:#0f4e42; --line:#dbe2ea; --warning:#fff7df; --danger:#a61b1b; --shadow:0 12px 32px rgba(20,33,61,.08); }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:var(--bg); line-height:1.5; }
+    .hero { background:linear-gradient(135deg,#113e45,#176b5a); color:#fff; padding:56px 20px 48px; }
+    .wrap { width:min(1160px,100%); margin:0 auto; }
+    h1 { margin:0; font-size:clamp(2rem,5vw,3.4rem); letter-spacing:-.035em; }
+    .subtitle { margin:10px 0 0; font-size:clamp(1rem,2vw,1.22rem); color:#d8f5ed; }
+    main { padding:28px 20px 52px; }
+    .notice { border:1px solid #eedb9a; background:var(--warning); border-radius:14px; padding:16px 18px; color:#5a4710; margin:0 0 20px; }
+    .notice p { margin:0; }
+    .notice p + p { margin-top:8px; }
+    .grid { display:grid; grid-template-columns:minmax(0,400px) minmax(0,1fr); gap:22px; align-items:start; }
+    .card { background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:22px; box-shadow:var(--shadow); }
+    h2 { font-size:1.25rem; margin:0 0 7px; }
+    .intro, .small { color:var(--muted); font-size:.93rem; }
+    .intro { margin:0 0 18px; }
+    form { display:grid; gap:14px; }
+    label { display:grid; gap:6px; font-weight:650; font-size:.92rem; }
+    input, select, button { font:inherit; }
+    input, select { width:100%; min-height:44px; border:1px solid #bec9d6; border-radius:10px; padding:9px 11px; color:var(--ink); background:#fff; }
+    input:focus, select:focus { outline:3px solid rgba(23,107,90,.18); border-color:var(--primary); }
+    .two { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    button { min-height:46px; border:0; border-radius:10px; padding:10px 15px; cursor:pointer; font-weight:750; background:var(--primary); color:#fff; }
+    button:hover { background:var(--primary-dark); }
+    button:disabled { opacity:.65; cursor:wait; }
+    #formMessage { min-height:1.3em; margin:0; font-size:.92rem; }
+    #formMessage.error { color:var(--danger); }
+    #formMessage.success { color:var(--primary-dark); }
+    .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0; }
+    .stat { background:#eef7f5; border-radius:12px; padding:12px; }
+    .stat strong { display:block; font-size:1.35rem; }
+    .stat span { font-size:.78rem; color:var(--muted); }
+    .filters { display:grid; grid-template-columns:1fr 160px; gap:10px; margin:12px 0 16px; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:12px; }
+    table { width:100%; border-collapse:collapse; min-width:700px; background:#fff; }
+    th, td { padding:12px 13px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top; }
+    th { background:#f8fafc; font-size:.8rem; letter-spacing:.025em; text-transform:uppercase; color:#4e596c; }
+    tbody tr:last-child td { border-bottom:0; }
+    .badge { display:inline-block; padding:3px 8px; border-radius:999px; background:#e6f4f0; color:#0f5647; font-size:.78rem; font-weight:750; white-space:nowrap; }
+    .empty { padding:30px 12px; text-align:center; color:var(--muted); }
+    .scenario-list { margin:24px 0 0; display:grid; gap:12px; }
+    .scenario { padding:15px; border-left:4px solid var(--primary); background:#f7faf9; border-radius:0 10px 10px 0; }
+    .scenario h3 { margin:0 0 5px; font-size:1rem; }
+    .scenario p { margin:2px 0; font-size:.88rem; color:#4c5867; }
+    footer { border-top:1px solid var(--line); background:#fff; padding:22px 20px; color:var(--muted); font-size:.85rem; }
+    @media (max-width:840px) { .grid { grid-template-columns:1fr; } }
+    @media (max-width:520px) { .two, .filters { grid-template-columns:1fr; } .stats { grid-template-columns:1fr; } .card { padding:17px; } }
+  </style>
+</head>
+<body>
+  <header class="hero"><div class="wrap"><h1>ENARE Pernambuco — Psicologia</h1><p class="subtitle">Mapa colaborativo de notas e interesse por cenário.</p></div></header>
+  <main class="wrap">
+    <section class="notice" aria-label="Avisos importantes"><p><strong>Ferramenta não oficial.</strong> Este ranking é colaborativo e não é classificação, resultado ou previsão oficial do ENARE.</p><p><strong>Privacidade:</strong> escolha um apelido não identificável. Não informe nome, CRP, Instagram, telefone, e-mail, número de inscrição ou faculdade.</p><p>Candidatos PNP também participam da classificação geral/AC. Esta ferramenta não substitui regras, preferências, desempates, convocações ou qualquer orientação oficial.</p></section>
+    <div class="grid">
+      <section class="card" aria-labelledby="form-title"><h2 id="form-title">Compartilhe sua informação</h2><p class="intro">Seu ano de nascimento é usado apenas como aproximação de desempate e não aparece no ranking.</p><form id="responseForm" novalidate><label>Apelido público<input id="apelido" name="apelido" type="text" minlength="3" maxlength="24" autocomplete="off" required placeholder="Ex.: PsiRecife"></label><label>Nota final no ENARE<input id="nota" name="nota" type="number" min="0" max="100" step="0.1" inputmode="decimal" required placeholder="Ex.: 78,5"></label><div class="two"><label>Ano de nascimento<input id="ano_nascimento" name="ano_nascimento" type="number" min="1930" max="2010" inputmode="numeric" required placeholder="Ex.: 1995"></label><label>Modalidade de concorrência<select id="modalidade" name="modalidade" required><option value="AC">AC</option><option value="PNP">PNP</option></select></label></div><label>Programa/cenário de interesse<select id="programa_id" name="programa_id" required></select></label><label>Preferência<select id="prioridade" name="prioridade" required><option value="1">1ª prioridade</option><option value="2">Tenho interesse</option><option value="3">Consideraria</option></select></label><button id="submitButton" type="submit">Adicionar ao mapa colaborativo</button><p id="formMessage" role="status" aria-live="polite"></p></form></section>
+      <section class="card" aria-labelledby="ranking-title"><h2 id="ranking-title">Ranking colaborativo</h2><p class="intro">Ordem: nota decrescente; em empate, ano de nascimento crescente. O critério oficial pode ser diferente.</p><div class="stats" aria-live="polite"><div class="stat"><strong id="countResponses">—</strong><span>respostas exibidas</span></div><div class="stat"><strong id="highestScore">—</strong><span>maior nota exibida</span></div><div class="stat"><strong id="scenarioCount">3</strong><span>cenários exibidos</span></div></div><div class="filters"><label>Filtrar por cenário<select id="filterProgram"></select></label><label>Modalidade<select id="filterModality"><option value="">Todas</option><option value="AC">AC</option><option value="PNP">PNP</option></select></label></div><div class="table-wrap"><table><thead><tr><th>Posição</th><th>Apelido</th><th>Nota</th><th>Modalidade</th><th>Programa/cenário</th><th>Vagas</th><th>Interesse</th></tr></thead><tbody id="rankingBody"></tbody></table><p id="emptyState" class="empty" hidden>Nenhuma resposta encontrada para estes filtros.</p></div></section>
+    </div>
+    <section class="card scenario-list" aria-labelledby="scenarios-title"><h2 id="scenarios-title">Cenários cadastrados</h2><div id="scenarioCards"></div></section>
+  </main><footer><div class="wrap">Dados enviados voluntariamente pelos participantes. Confira sempre os documentos e comunicados oficiais do ENARE.</div></footer>
+  <script>
+    const PROGRAMAS = [
+      { id: 1, nome: 'Atenção à Saúde Renal — Recife', instituicao: 'Universidade Federal de Pernambuco — Hospital das Clínicas Professor Romero Marques', cidade: 'Recife', enfase: 'Atenção à Saúde Renal', tipo: 'Multiprofissional', profissao: 'Psicologia', duracao: '2 anos', requisito: 'Graduação em Psicologia, com registro no respectivo conselho de classe.', ac: 1, pnp: 1 },
+      { id: 2, nome: 'Atenção à Saúde da Mulher — Recife', instituicao: 'Universidade Federal de Pernambuco — Hospital das Clínicas Professor Romero Marques', cidade: 'Recife', enfase: 'Atenção à Saúde da Mulher', tipo: 'Multiprofissional', profissao: 'Psicologia', duracao: '2 anos', requisito: 'Graduação em Psicologia, com registro no respectivo conselho de classe.', ac: 1, pnp: 0 },
+      { id: 3, nome: 'Psicologia Hospitalar — Recife', instituicao: 'Universidade Federal de Pernambuco — Hospital das Clínicas Professor Romero Marques', cidade: 'Recife', enfase: 'Psicologia Hospitalar', tipo: 'Uniprofissional', profissao: 'Psicologia', duracao: '2 anos', requisito: 'Graduação em Psicologia, com registro no respectivo conselho de classe.', ac: 1, pnp: 1 }
+    ];
+    const byId = new Map(PROGRAMAS.map((p) => [p.id, p])); let respostas = [];
+    function escapeHtml(value) { return String(value ?? '').replace(/[&<>'\"]/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' })[char]); }
+    function vagas(programa) { return `${programa.ac} AC + ${programa.pnp} PNP`; }
+    function labelPrioridade(valor) { return ({ 1: '1ª prioridade', 2: 'Tenho interesse', 3: 'Consideraria' })[Number(valor)] || '—'; }
+    function formatNota(valor) { return Number(valor).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }); }
+    function fillProgramSelects() { const options = PROGRAMAS.map((p) => `<option value="${p.id}">${escapeHtml(p.nome)} | ${escapeHtml(p.instituicao)}</option>`).join(''); document.getElementById('programa_id').innerHTML = options; document.getElementById('filterProgram').innerHTML = `<option value="">Todos os cenários</option>${options}`; document.getElementById('scenarioCards').innerHTML = PROGRAMAS.map((p) => `<article class="scenario"><h3>${escapeHtml(p.nome)} — ${escapeHtml(p.instituicao)}</h3><p><strong>Ênfase:</strong> ${escapeHtml(p.enfase)} · <strong>Tipo:</strong> ${escapeHtml(p.tipo)} · <strong>Profissão:</strong> ${escapeHtml(p.profissao)}</p><p><strong>Duração:</strong> ${escapeHtml(p.duracao)} · <strong>Vagas:</strong> ${vagas(p)}</p><p><strong>Requisito:</strong> ${escapeHtml(p.requisito)}</p></article>`).join(''); }
+    function renderRanking() { const programaId = document.getElementById('filterProgram').value; const modalidade = document.getElementById('filterModality').value; const filtradas = respostas.filter((r) => (!programaId || Number(r.programa_id) === Number(programaId)) && (!modalidade || r.modalidade === modalidade)); document.getElementById('countResponses').textContent = String(filtradas.length); document.getElementById('highestScore').textContent = filtradas.length ? formatNota(filtradas[0].nota) : '—'; document.getElementById('scenarioCount').textContent = String(PROGRAMAS.length); const body = document.getElementById('rankingBody'); const empty = document.getElementById('emptyState'); if (!filtradas.length) { body.innerHTML = ''; empty.hidden = false; return; } empty.hidden = true; body.innerHTML = filtradas.map((r, index) => { const p = byId.get(Number(r.programa_id)); const programaNome = p ? p.nome : `Programa ${Number(r.programa_id)}`; const programaVagas = p ? vagas(p) : 'Não informado'; return `<tr><td>${index + 1}</td><td>${escapeHtml(r.apelido)}</td><td>${formatNota(r.nota)}</td><td><span class="badge">${escapeHtml(r.modalidade)}</span></td><td>${escapeHtml(programaNome)}</td><td>${escapeHtml(programaVagas)}</td><td>${escapeHtml(labelPrioridade(r.prioridade))}</td></tr>`; }).join(''); }
+    async function loadRanking() { try { const response = await fetch('/api/ranking'); if (!response.ok) throw new Error('Não foi possível carregar o ranking.'); respostas = await response.json(); if (!Array.isArray(respostas)) respostas = []; renderRanking(); } catch (error) { respostas = []; renderRanking(); document.getElementById('emptyState').hidden = false; document.getElementById('emptyState').textContent = 'Não foi possível carregar os dados agora. Tente novamente em instantes.'; } }
+    document.getElementById('responseForm').addEventListener('submit', async (event) => { event.preventDefault(); const message = document.getElementById('formMessage'); const button = document.getElementById('submitButton'); const form = event.currentTarget; const payload = { apelido: form.apelido.value.trim(), nota: form.nota.value.replace(',', '.'), ano_nascimento: Number(form.ano_nascimento.value), modalidade: form.modalidade.value, programa_id: Number(form.programa_id.value), prioridade: Number(form.prioridade.value) }; message.className = ''; message.textContent = ''; if (payload.apelido.length < 3 || payload.apelido.length > 24 || !Number.isFinite(Number(payload.nota)) || Number(payload.nota) < 0 || Number(payload.nota) > 100 || !Number.isInteger(payload.ano_nascimento) || payload.ano_nascimento < 1930 || payload.ano_nascimento > 2010 || !['AC','PNP'].includes(payload.modalidade) || !Number.isInteger(payload.programa_id) || payload.programa_id < 1 || ![1,2,3].includes(payload.prioridade)) { message.className = 'error'; message.textContent = 'Revise os campos informados antes de enviar.'; return; } button.disabled = true; button.textContent = 'Enviando…'; try { const response = await fetch('/api/respostas', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }); const data = await response.json().catch(() => ({})); if (!response.ok) throw new Error(data.error || 'Não foi possível registrar a resposta.'); form.reset(); message.className = 'success'; message.textContent = 'Resposta adicionada ao mapa colaborativo.'; await loadRanking(); } catch (error) { message.className = 'error'; message.textContent = error.message || 'Ocorreu um erro ao enviar.'; } finally { button.disabled = false; button.textContent = 'Adicionar ao mapa colaborativo'; } });
+    document.getElementById('filterProgram').addEventListener('change', renderRanking); document.getElementById('filterModality').addEventListener('change', renderRanking); fillProgramSelects(); loadRanking();
+  </script>
+</body>
+</html>
